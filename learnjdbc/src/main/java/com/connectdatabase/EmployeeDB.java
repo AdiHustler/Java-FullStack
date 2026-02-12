@@ -1,0 +1,178 @@
+package com.connectdatabase;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class EmployeeDB {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+        EmployeeDB obj = new EmployeeDB();
+
+        while (true) {
+            System.out.println("\n1. Insert");
+            System.out.println("2. Delete");
+            System.out.println("3. Update");
+            System.out.println("4. Find");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Enter Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter the salary: ");
+                    int salary = sc.nextInt();
+
+                    obj.insertEmployee(id, name, salary);
+                    break;
+
+                case 2:
+                    System.out.print("Enter ID to delete: ");
+                    obj.deleteEmployee(sc.nextInt());
+                    break;
+
+                case 3:
+                    System.out.print("Enter ID to update: ");
+                    int id1 = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Enter New Salary: ");
+                    int salary1 = sc.nextInt();
+
+                    obj.updateEmployee(id1, salary1);
+                    break;
+
+                case 4:
+                    System.out.print("Enter ID to find: ");
+                    obj.searchEmployee(sc.nextInt());
+                    break;
+
+                case 5:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+	}
+	
+	public void insertEmployee(int id, String name, int salary) {
+		String url="jdbc:postgresql://localhost:5432/postgres";
+		String un="postgres";
+		String pwd="root";
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			Connection connect=DriverManager.getConnection(url, un, pwd);
+			
+			// Taking the values from the user dynamically
+			String sql="INSERT INTO EMPLOYEE VALUES(?,?,?)";
+			
+			// Prepared Statement is used instead of simple statement
+			PreparedStatement pstm = connect.prepareStatement(sql);
+	        
+	        pstm.setInt(1, id);
+	        pstm.setString(2, name);
+	        pstm.setInt(3, salary);
+	        pstm.executeUpdate();
+	        System.out.println("Record inserted successfully!");
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateEmployee(int id, int salary) {
+		String url="jdbc:postgresql://localhost:5432/postgres";
+		String un="postgres";
+		String pwd="root";
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			Connection connect=DriverManager.getConnection(url, un, pwd);
+			
+			// Taking the values from the user dynamically
+			String sql="UPDATE EMPLOYEE SET SALARY=? WHERE ID=?";
+			
+			// Prepared Statement is used instead of simple statement
+			PreparedStatement pstm = connect.prepareStatement(sql);
+			
+			pstm.setInt(1, salary);
+			pstm.setInt(2, id);
+	        pstm.executeUpdate();
+	        System.out.println("Record updated successfully!");
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void searchEmployee(int id) {
+		String url="jdbc:postgresql://localhost:5432/postgres";
+		String un="postgres";
+		String pwd="root";
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			Connection connect=DriverManager.getConnection(url, un, pwd);
+			String query = "SELECT * FROM STUDENT WHERE id=?";
+			PreparedStatement ps = connect.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+             System.out.println("ID: " + rs.getInt(1));
+             System.out.println("Name: " + rs.getString(2));
+             System.out.println("Salary: " + rs.getInt(3));
+			} else {
+             System.out.println("No record found");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteEmployee(int id) {
+		String url="jdbc:postgresql://localhost:5432/postgres";
+		String un="postgres";
+		String pwd="root";
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			Connection connect=DriverManager.getConnection(url, un, pwd);
+			
+			// Taking the values from the user dynamically
+			String sql="DELETE FROM EMPLOYEE WHERE ID=?";
+			
+			// Prepared Statement is used instead of simple statement
+			PreparedStatement pstm = connect.prepareStatement(sql);
+
+	        pstm.setInt(1, id);
+
+	        pstm.executeUpdate();
+	        System.out.println("Record deleted successfully!");
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
