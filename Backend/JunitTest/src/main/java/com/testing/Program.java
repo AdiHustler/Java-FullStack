@@ -1,0 +1,20 @@
+package com.testing;
+
+public class Program {
+	public boolean isPalindrome(String s) {
+		StringBuilder sb = new StringBuilder(s);
+		sb=sb.reverse();
+		return s.equals(sb.toString());
+	}
+	public boolean isPositive(int n) {
+		return (n>0);
+	}
+	
+	public int add(int a,int b) {
+		return a+b;
+	}
+	
+	public String isEven(int n) {
+		return (n%2==0)?"even":"odd";
+	}
+}
