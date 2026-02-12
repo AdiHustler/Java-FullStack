@@ -1,0 +1,29 @@
+# Eclipse
+.metadata/
+.settings/
+.project
+.classpath
+
+# Compiled files
+bin/
+target/
+out/
+*.class
+
+# Logs
+*.log
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# Gradle
+.gradle/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
