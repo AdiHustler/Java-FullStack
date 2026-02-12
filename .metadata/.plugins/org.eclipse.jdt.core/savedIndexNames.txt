@@ -1,0 +1,8 @@
+INDEX VERSION 1.134+D:\capgemini_advance_java\.metadata\.plugins\org.eclipse.jdt.core
+3502794195.index
+3785753399.index
+1518368824.index
+1865797976.index
+3085090100.index
+2783979781.index
+1317485014.index

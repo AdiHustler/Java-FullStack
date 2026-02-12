@@ -1,0 +1,16 @@
+package com.connectdatabase;
+
+public class StepstoConnectDatabase {
+	public static void main(String[] args){
+		
+		// Load the driver class
+		try {
+			Class.forName("org.postgresql.Driver"); // forName() imported from 'lang' package, it is imported by default
+			System.out.println("Class loaded");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}   
+		
+		
+	}
+}
