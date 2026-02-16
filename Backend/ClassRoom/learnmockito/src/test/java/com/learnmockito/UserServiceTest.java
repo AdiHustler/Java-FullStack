@@ -5,19 +5,38 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.basics.Calculator;
 import com.basics.MathService;
+import com.basics.User;
 import com.basics.UserDao;
 import com.basics.UserService;
 
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
+	
+	@Mock
+	UserDao daoMock;
+	
+	@InjectMocks
+	UserService service;
+	
 	
 	@Test
 	public void testGetTypeOfUser() {
-		UserDao ud = new UserDao();
-		UserService us = new UserService(ud);
-		String actual=us.typeOfUser(1);
+		User fakeUser1 = new User();
+		fakeUser1.setId(1);
+		fakeUser1.setBalance(5000);
+		fakeUser1.setName("Billo");
+		when(UserDao.findById(1)).thenReturn(fakeUser1);
+
+//		UserDao ud = new UserDao();
+//		UserService us = new UserService(ud);
+		String actual=service.typeOfUser(1);
 		assertEquals("New User",actual);
 	}
 	
@@ -37,6 +56,5 @@ public class UserServiceTest {
 		int res = m.doubleAddition(10, 20);
 		
 		assertEquals(35,res);
-		
 	}
 }

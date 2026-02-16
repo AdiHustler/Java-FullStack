@@ -1,14 +1,9 @@
 package com.basics;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="Users")
 public class User {
 	
-	@Id
+	
 	private int id;
 	private String name;
 	private int balance;
