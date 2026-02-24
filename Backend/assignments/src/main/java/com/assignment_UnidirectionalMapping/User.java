@@ -16,11 +16,11 @@ public class User {
 	private int password;
 	private String email;
 	User(){}
-	// One user -> many posts
+	// One user - many posts
     @OneToMany
     private List<Post> posts = new ArrayList<>();
 
-    // One user -> many comments
+    // One user - many comments
     @OneToMany
     private List<Comment> comments = new ArrayList<>();
 
