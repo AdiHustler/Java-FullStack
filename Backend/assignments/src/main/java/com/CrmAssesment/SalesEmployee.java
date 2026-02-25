@@ -59,8 +59,4 @@ public class SalesEmployee{
 	public void setLeads(List<Lead> leads) {
 		this.leads = leads;
 	}
-	
-	
-
-    
 }
