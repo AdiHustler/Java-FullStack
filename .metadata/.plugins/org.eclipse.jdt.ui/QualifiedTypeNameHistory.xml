@@ -12,4 +12,7 @@
     <fullyQualifiedTypeName name="com.person.PersonDao"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="com.testing.Program"/>
+    <fullyQualifiedTypeName name="com.capgemini.EventManagementSystem.entity.Status"/>
+    <fullyQualifiedTypeName name="com.capgemini.EventManagementSystem.entity.EventType"/>
+    <fullyQualifiedTypeName name="com.capgemini.EventManagementSystem.entity.Event"/>
 </qualifiedTypeNameHistroy>
